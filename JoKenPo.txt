@@ -1,0 +1,111 @@
+using System;
+class jogo {
+  static void Main() {
+    
+    Console.WriteLine("Digite o nome do 1º jogador");
+    Jogador j1 = new Jogador(Console.ReadLine());
+    
+    Console.WriteLine("Digite o nome do 2º jogador");
+    Jogador j2 = new Jogador(Console.ReadLine());
+    
+    JoKenPo jogo = new JoKenPo(j1,j2);
+    
+    jogo.Iniciar();
+    
+  }
+}
+
+class Jogador{
+    public string Nome{get;set;}
+    public int Escolha{get;set;}
+    
+    public Jogador(string nome){
+        this.Nome = nome;
+    }
+    
+    public void FazerEscolha(){
+        Console.WriteLine("Digite um número");
+        Console.WriteLine("1 - PEDRA");
+        Console.WriteLine("2 - PAPEL");
+        Console.WriteLine("3 - TESOURA");
+        this.Escolha = int.Parse(Console.ReadLine());
+    }
+    
+}
+
+class JoKenPo{
+    const int PEDRA =  1;
+    const int PAPEL =  2;
+    const int TESOURA =  3;
+    
+    public Jogador Jogador1{get;set;}
+    public Jogador Jogador2{get;set;}
+    
+    public JoKenPo(Jogador jogador1,Jogador jogador2){
+        this.Jogador1 = jogador1;
+        this.Jogador2 = jogador2;
+    }
+    
+    public void Iniciar(){
+        
+        bool empate = true;
+        
+        while(empate){
+            
+            Jogador1.FazerEscolha();
+            Jogador2.FazerEscolha();
+            
+            if(Jogador1.Escolha == Jogador2.Escolha){
+                Console.WriteLine("Deu empate");
+            }else{
+                
+                empate = false;
+                
+                if(Jogador1.Escolha == 1 && Jogador2.Escolha == 3){
+                    
+                    Console.WriteLine($"{Jogador1.Nome} escolheu PEDRA");
+                    Console.WriteLine($"{Jogador2.Nome} escolheu TESOURA");
+                    Console.WriteLine($"{Jogador1.Nome} venceu");
+                
+                }else if(Jogador1.Escolha == 2 && Jogador2.Escolha == 1){
+                    
+                    Console.WriteLine($"{Jogador1.Nome} escolheu PAPEL");
+                    Console.WriteLine($"{Jogador2.Nome} escolheu PEDRA");
+                    Console.WriteLine($"{Jogador1.Nome} venceu");
+                
+                }else if(Jogador1.Escolha == 3 && Jogador2.Escolha == 2){
+                    
+                    Console.WriteLine($"{Jogador1.Nome} escolheu TESOURA");
+                    Console.WriteLine($"{Jogador2.Nome} escolheu PAPEL");
+                    Console.WriteLine($"{Jogador1.Nome} venceu");
+                
+                }else if(Jogador2.Escolha == 2 && Jogador1.Escolha == 1){
+                    
+                    Console.WriteLine($"{Jogador2.Nome} escolheu PAPEL");
+                    Console.WriteLine($"{Jogador1.Nome} escolheu PEDRA");
+                    Console.WriteLine($"{Jogador2.Nome} venceu");
+                
+                }else if(Jogador2.Escolha == 3 && Jogador1.Escolha == 2){
+                    
+                    Console.WriteLine($"{Jogador2.Nome} escolheu TESOURA");
+                    Console.WriteLine($"{Jogador1.Nome} escolheu PAPEL");
+                    Console.WriteLine($"{Jogador2.Nome} venceu");
+                
+                }else{
+                    Console.WriteLine($"{Jogador2.Nome} escolheu PEDRA");
+                    Console.WriteLine($"{Jogador1.Nome} escolheu TESOURA");
+                    Console.WriteLine($"{Jogador2.Nome} venceu");
+                }
+                
+            }
+            
+            
+        }
+        
+        
+    }
+}
+
+
+
+
